@@ -14,6 +14,12 @@
 # ============================================================
 
 # ---------- SHARED: applies everywhere ---------------------
+# RenderScale: 3D scene render resolution. UI + text stay native,
+# so this costs sharpness only in the 3D view, not the interface.
+# On a 5K panel 0.5 = 2560x1440 = exactly 2x integer upscale (crisp),
+# 1/4 the pixels. 0.75 = 3840x2160 (44% pixels). 1.0 = native 5K.
+SET RenderScale "0.5"
+
 # maxFPS = refresh rate. 200 on a 60Hz panel renders frames
 # nobody sees: wasted power, more heat, jitterier frame times.
 #   60Hz non-VRR -> 60 (this machine) | VRR panel -> refresh - 3
