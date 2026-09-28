@@ -12,8 +12,10 @@
 # Still capped: frames above refresh rate are pure waste.
 # 57 assumes 60Hz. Use (refresh - 3) for high-refresh panels.
 SET useMaxFPS "1"
-SET maxFPS "57"
+SET maxFPS "60"
 SET vsync "0"
+SET useMaxFPSBk "1"
+SET maxFPSBk "30"
 
 # --- anti-aliasing ------------------------------------------
 SET MSAAQuality "2"

@@ -14,16 +14,22 @@
 # ============================================================
 
 # --- frame cap (biggest free win) ---------------------------
-# 57 assumes a 60Hz display with adaptive sync. If your panel is
-# 144Hz use 141. NEVER leave maxFPS far above refresh rate -
-# the GPU renders frames nobody sees and frame times get jittery.
+# maxFPS = display refresh rate, never far above it. Leaving it at
+# 200 on a 60Hz panel means the GPU renders frames nobody sees:
+# wasted power, more heat, and jitterier frame times.
+#   60Hz non-VRR  -> 60   (this machine)
+#   144Hz VRR     -> 141  (refresh - 3, stays inside the sync window)
 SET useMaxFPS "1"
-SET maxFPS "57"
+SET maxFPS "60"
 SET vsync "0"
+# Background cap keeps the GPU quiet while the game is alt-tabbed.
+SET useMaxFPSBk "1"
+SET maxFPSBk "30"
 
 # --- anti-aliasing (1440p: MSAA is expensive) ---------------
 SET MSAAQuality "0"
-SET ffxAntiAliasingMode "1"
+# ffxAntiAliasingMode is version dependent - leave it alone unless
+# you have verified what each value does in your client.
 
 # --- shadows: no value in a raid, big cost ------------------
 SET graphicsShadowQuality "0"

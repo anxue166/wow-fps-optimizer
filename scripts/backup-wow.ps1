@@ -10,7 +10,8 @@
   powershell -ExecutionPolicy Bypass -File backup-wow.ps1 -WowPath "D:\World of Warcraft\_retail_"
 #>
 param(
-    [string]$WowPath
+    [string]$WowPath,
+    [switch]$Force   # back up even while the game is running (config may be stale)
 )
 
 $ErrorActionPreference = 'Stop'
@@ -50,18 +51,22 @@ if ($hasExe) {
 $wtfDir = Join-Path $versionDir 'WTF'
 if (-not (Test-Path $wtfDir)) { throw "WTF folder not found: $wtfDir" }
 
+# ---- refuse to back up while the game is running -----------------
+# WoW rewrites Config.wtf when it exits, so a backup taken while it is
+# running can be stale. Non-interactive by design: no Read-Host prompts.
+$running = @(Get-Process -Name 'Wow','WowClassic','WowClassicEra','WowB' -ErrorAction SilentlyContinue)
+if ($running.Count -gt 0 -and -not $Force) {
+    Write-Host 'WARNING: World of Warcraft is running.' -ForegroundColor Yellow
+    Write-Host '  The game rewrites Config.wtf on exit, so a backup taken now may be stale' -ForegroundColor Yellow
+    Write-Host '  and any config edit made now would be overwritten.' -ForegroundColor Yellow
+    Write-Host '  Close the game and re-run, or pass -Force to back up anyway.' -ForegroundColor Yellow
+    exit 1
+}
+
 $stamp    = Get-Date -Format 'yyyy-MM-dd_HH-mm-ss'
 $backupRoot = Join-Path $baseDir '_WoW-FPS-Backup'
 $dest     = Join-Path $backupRoot $stamp
 New-Item -ItemType Directory -Path $dest -Force | Out-Null
-
-# ---- warn if game running ----
-if (Get-Process -Name 'Wow','WowClassic','WowClassicEra' -ErrorAction SilentlyContinue) {
-    Write-Host 'WARNING: World of Warcraft appears to be running.' -ForegroundColor Yellow
-    Write-Host 'Close the game before continuing, otherwise the backup may be inconsistent.' -ForegroundColor Yellow
-    $ans = Read-Host 'Type YES to continue anyway, anything else to abort'
-    if ($ans -ne 'YES') { Write-Host 'Aborted.'; exit 1 }
-}
 
 # ---- copy WTF ----
 Write-Host "Backing up WTF -> $dest\WTF" -ForegroundColor Cyan

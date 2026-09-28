@@ -9,6 +9,10 @@
 
 .PARAMETER WowPath   WoW version dir (containing Wow.exe / WowClassic.exe) or base install dir.
 .PARAMETER Profile   A = quality first, B = balanced, C = raid FPS.
+                     CA/CB/CC = Classic equivalents.
+                     CM = Classic merged: balanced base + aggressive RAID*
+                          (recommended - Classic swaps in the RAID* set
+                          automatically, so no manual profile switching).
 .PARAMETER BackupDir Optional explicit backup dir. If omitted, the newest backup is required to exist.
 
 .EXAMPLE
@@ -16,7 +20,7 @@
 #>
 param(
     [Parameter(Mandatory = $true)][string]$WowPath,
-    [Parameter(Mandatory = $true)][ValidateSet('A','B','C','CA','CB','CC')][string]$Profile,
+    [Parameter(Mandatory = $true)][ValidateSet('A','B','C','CA','CB','CC','CM')][string]$Profile,
     [string]$BackupDir
 )
 
@@ -30,6 +34,7 @@ $fileMap = @{
     'CA' = 'classic-a.wtf'
     'CB' = 'classic-b.wtf'
     'CC' = 'classic-c.wtf'
+    'CM' = 'classic-m.wtf'
 }
 $profileFile = Join-Path $skillRoot ("templates\profiles\" + $fileMap[$key])
 

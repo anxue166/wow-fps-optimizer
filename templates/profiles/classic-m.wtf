@@ -1,0 +1,105 @@
+# ============================================================
+# Classic Profile CM - Daily balanced + Raid aggressive  (推荐)
+# 怀旧服 _classic_titan_
+#
+# Classic keeps TWO independent graphics sets:
+#   base keys        -> used in open world, 5-man dungeons, cities
+#   raid*/RAID* keys -> swapped in automatically when you enter a
+#                       raid or battleground
+# So you do NOT have to switch profiles by hand: put the pretty
+# settings in the base keys and the cheap ones in the RAID* twins.
+#
+# This profile = CB (balanced) for base + CC (raid FPS) for raid.
+# Verified key names against a real _classic_titan_ Config.wtf.
+# ============================================================
+
+# ---------- SHARED: applies everywhere ---------------------
+# maxFPS = refresh rate. 200 on a 60Hz panel renders frames
+# nobody sees: wasted power, more heat, jitterier frame times.
+#   60Hz non-VRR -> 60 (this machine) | VRR panel -> refresh - 3
+SET useMaxFPS "1"
+SET maxFPS "60"
+SET vsync "0"
+SET useMaxFPSBk "1"
+SET maxFPSBk "30"
+
+# Texture resolution goes UP, not down. 8GB VRAM at 1440p handles
+# High easily; the low preset was costing sharpness for no FPS.
+SET graphicsTextureResolution "2"
+SET raidGraphicsTextureResolution "2"
+SET RAIDgraphicsTextureResolution "2"
+SET worldBaseMip "0"
+SET RAIDworldBaseMip "0"
+
+# Projected textures = the AoE circles under your feet. Never off.
+SET graphicsProjectedTextures "1"
+SET raidGraphicsProjectedTextures "1"
+SET RAIDprojectedTextures "1"
+SET projectedTextures "1"
+
+SET ffxGlow "0"
+SET ffxNether "0"
+SET ffxDeath "0"
+SET reflectionMode "0"
+SET RAIDreflectionMode "0"
+SET rippleDetail "0"
+SET RAIDrippleDetail "0"
+SET weatherDensity "1"
+SET RAIDweatherDensity "1"
+
+# ---------- BASE: open world / 5-man -----------------------
+SET graphicsQuality "5"
+SET MSAAQuality "1"
+SET graphicsShadowQuality "2"
+SET graphicsSSAO "0"
+SET graphicsGroundClutter "4"
+SET graphicsEnvironmentDetail "5"
+SET graphicsParticleDensity "3"
+SET particleDensity "70"
+SET particleMTDensity "70"
+SET graphicsLiquidDetail "1"
+SET graphicsSunshafts "1"
+SET sunShafts "1"
+SET groundEffectDensity "48"
+SET groundEffectDist "120"
+SET spellClutterRangeConstant "10"
+SET lodObjectFadeScale "92"
+SET lodObjectCullSize "20"
+SET lodObjectMinSize "0"
+
+# ---------- RAID: auto-swapped in raids / battlegrounds ----
+SET raidGraphicsQuality "2"
+SET RAIDgraphicsQuality "2"
+# Shadows: zero tactical value in a 40-man, real cost
+SET raidGraphicsShadowQuality "0"
+SET RAIDgraphicsShadowQuality "0"
+SET RAIDshadowMode "1"
+SET RAIDshadowNumCascades "1"
+# SSAO: invisible while fighting
+SET raidGraphicsSSAO "0"
+SET RAIDgraphicsSSAO "0"
+SET RAIDSSAO "0"
+# Geometry / clutter: draw-call heavy
+SET raidGraphicsGroundClutter "2"
+SET RAIDgraphicsGroundClutter "2"
+SET raidGraphicsEnvironmentDetail "2"
+SET RAIDgraphicsEnvironmentDetail "2"
+SET RAIDlodObjectFadeScale "70"
+SET RAIDlodObjectCullSize "30"
+SET RAIDlodObjectMinSize "0"
+# Particles: the AoE spike that tanks 1% Low
+SET raidGraphicsParticleDensity "1"
+SET RAIDgraphicsParticleDensity "1"
+SET RAIDparticleDensity "30"
+SET RAIDparticleMTDensity "30"
+# Water / eye candy
+SET raidGraphicsLiquidDetail "0"
+SET RAIDgraphicsLiquidDetail "0"
+SET RAIDWaterDetail "0"
+SET raidGraphicsSunshafts "0"
+SET RAIDgraphicsSunshafts "0"
+SET RAIDsunShafts "0"
+SET RAIDgroundEffectDensity "32"
+SET RAIDgroundEffectDist "80"
+# Spell clutter: fewer other players' spell visuals
+SET spellClutterRangeConstantRaid "5"

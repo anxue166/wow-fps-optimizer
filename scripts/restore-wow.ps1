@@ -15,6 +15,7 @@
 #>
 param(
     [Parameter(Mandatory = $true)][string]$BackupDir,
+    [string]$VersionDir,
     [switch]$ConfigOnly
 )
 
@@ -31,7 +32,8 @@ if (Test-Path $stateFile) {
     $versionDir = $state.wow.versionDir
 }
 if (-not $versionDir -or -not (Test-Path $versionDir)) {
-    $versionDir = Read-Host 'Enter the WoW version dir to restore into (e.g. D:\World of Warcraft\_retail_)'
+    if (-not $VersionDir) { throw "Cannot determine target version dir. Pass -VersionDir explicitly." }
+    $versionDir = $VersionDir
     if (-not (Test-Path $versionDir)) { throw "Path not found: $versionDir" }
 }
 
