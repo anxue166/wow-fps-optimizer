@@ -51,7 +51,23 @@ powershell -ExecutionPolicy Bypass -File .\scripts\restore-wow.ps1 -BackupDir "D
 powershell -ExecutionPolicy Bypass -File .\scripts\scan-addons.ps1 -WowPath "D:\World of Warcraft\_retail_"
 ```
 
-## 三套场景配置
+## 正式服 / 怀旧服
+
+**两套 CVar 完全不同，不能混用。** 怀旧服另有一整套 `RAID*` 前缀的团本配置（进团本自动套用），优化团本必须同时改基础键和 `RAID*` 孪生键。
+
+| Profile | 版本 | 场景 |
+|---|---|---|
+| `A` / `B` / `C` | 正式服 Retail | 画质优先 / 平衡 / Raid FPS |
+| `CA` / `CB` / `CC` | 怀旧服 Classic | 画质优先 / 平衡 / Raid FPS |
+
+```powershell
+# 怀旧服团本配置
+powershell -ExecutionPolicy Bypass -File .\scripts\apply-profile.ps1 -WowPath "E:\游戏\World of Warcraft\_classic_titan_" -Profile CC
+```
+
+怀旧服专属内容见 `references/wow-classic-cvars.md`（含 Questie 等怀旧服独有性能杀手）。
+
+## 三套场景配置（正式服）
 
 | | Profile A 画质优先 | Profile B 平衡 | Profile C Raid FPS |
 |---|---|---|---|

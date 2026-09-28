@@ -23,7 +23,7 @@ if (-not $WowPath) {
         'D:\Battle.net\World of Warcraft', 'C:\Battle.net\World of Warcraft'
     )
     foreach ($base in $probe) {
-        foreach ($sub in @('_retail_', '_classic_', '_classic_era_')) {
+        foreach ($sub in @('_retail_', '_classic_', '_classic_era_', '_classic_titan_')) {
             if (Test-Path (Join-Path $base $sub)) { $WowPath = Join-Path $base $sub; break }
         }
         if ($WowPath) { break }
@@ -31,16 +31,18 @@ if (-not $WowPath) {
     if (-not $WowPath) { throw 'Could not locate WoW. Pass -WowPath explicitly.' }
 }
 
-if (Test-Path (Join-Path $WowPath 'Wow.exe')) {
+$exeNames = @('Wow.exe', 'WowClassic.exe', 'WowClassicEra.exe', 'WowB.exe')
+$hasExe = @($exeNames | Where-Object { Test-Path (Join-Path $WowPath $_) }).Count -gt 0
+if ($hasExe) {
     $versionDir = $WowPath
     $baseDir    = Split-Path $WowPath -Parent
 } else {
     # base dir given - find first version dir present
     $found = $null
-    foreach ($sub in @('_retail_', '_classic_', '_classic_era_')) {
+    foreach ($sub in @('_retail_', '_classic_', '_classic_era_', '_classic_titan_')) {
         if (Test-Path (Join-Path $WowPath $sub)) { $found = Join-Path $WowPath $sub; break }
     }
-    if (-not $found) { throw "No Wow.exe and no version subfolder under '$WowPath'." }
+    if (-not $found) { throw "No WoW executable and no version subfolder under '$WowPath'." }
     $versionDir = $found
     $baseDir    = $WowPath
 }

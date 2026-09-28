@@ -13,11 +13,12 @@ $ErrorActionPreference = 'Stop'
 
 if (-not $WowPath) { $WowPath = (Get-Location).Path }
 
-if (Test-Path (Join-Path $WowPath 'Wow.exe')) {
+$exeNames = @('Wow.exe', 'WowClassic.exe', 'WowClassicEra.exe', 'WowB.exe')
+if (@($exeNames | Where-Object { Test-Path (Join-Path $WowPath $_) }).Count -gt 0) {
     $versionDir = $WowPath
 } else {
     $found = $null
-    foreach ($sub in @('_retail_', '_classic_', '_classic_era_')) {
+    foreach ($sub in @('_retail_', '_classic_', '_classic_era_', '_classic_titan_')) {
         if (Test-Path (Join-Path $WowPath $sub)) { $found = Join-Path $WowPath $sub; break }
     }
     if (-not $found) { throw "Cannot resolve WoW version dir under '$WowPath'." }

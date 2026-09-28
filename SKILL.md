@@ -115,7 +115,17 @@ powershell -ExecutionPolicy Bypass -File "<skill>/scripts/apply-profile.ps1" -Wo
 3. **只改文件中已存在的键**，未在文件中出现的键以追加块写入并标注
 4. 输出变更 diff 并写 `change-log.txt`
 
-> 支持的 Profile：`A` 画质优先 / `B` 平衡 / `C` Raid FPS。取值表见 `references/profiles-abc.md` 与 `templates/profiles/*.wtf`。
+> **支持的 Profile（正式服 / 怀旧服各三套）**：
+>
+> | Profile | 版本 | 场景 |
+> |---|---|---|
+> | `A` / `B` / `C` | **正式服 Retail** | 画质优先 / 平衡 / Raid FPS |
+> | `CA` / `CB` / `CC` | **怀旧服 Classic** | 画质优先 / 平衡 / Raid FPS |
+>
+> 取值表见 `references/profiles-abc.md`（正式服）与 `references/wow-classic-cvars.md`（怀旧服）。
+
+> ⚠️ **正式服与怀旧服的 CVar 完全不同，不能混用。** 开工前必须在 Phase 0 确认版本，并在 Phase 1 用检测脚本确认走的是哪个目录（`_retail_` / `_classic_` / `_classic_era_` / `_classic_titan_`）。
+> 怀旧服还有一整套独立的 `RAID*` 团本配置，优化团本必须同时改基础键和它的 `RAID*` 孪生键。
 
 ---
 
@@ -167,7 +177,8 @@ powershell -ExecutionPolicy Bypass -File "<skill>/scripts/apply-profile.ps1" -Wo
 | 文件 | 用途 |
 |---|---|
 | `references/hardware-detection.md` | 检测命令手册与手工兜底 |
-| `references/wow-cvars.md` | 全部图形 CVar：影响、推荐值、代价 |
+| `references/wow-cvars.md` | 正式服图形 CVar：影响、推荐值、代价 |
+| `references/wow-classic-cvars.md` | **怀旧服 CVar 差异、RAID\* 团本配置集、Questie 等怀旧服专属性能杀手** |
 | `references/rtx-4060ti-tuning.md` | RTX 4060 Ti 专项取舍 |
 | `references/profiles-abc.md` | 三套配置完整取值与理由 |
 | `references/addon-performance.md` | 插件掉帧排查流程（WeakAuras / Details / ElvUI / Plater / DBM） |
@@ -179,9 +190,12 @@ powershell -ExecutionPolicy Bypass -File "<skill>/scripts/apply-profile.ps1" -Wo
 | `templates/change-plan.md` | 变更确认表模板 |
 | `templates/benchmark-log.md` | 基准测试记录表 |
 | `templates/final-report.md` | 最终交付报告模板 |
-| `templates/profiles/profile-a.wtf` | 画质优先片段 |
-| `templates/profiles/profile-b.wtf` | 平衡模式片段 |
-| `templates/profiles/profile-c.wtf` | Raid FPS 片段 |
+| `templates/profiles/profile-a.wtf` | 正式服 画质优先片段 |
+| `templates/profiles/profile-b.wtf` | 正式服 平衡模式片段 |
+| `templates/profiles/profile-c.wtf` | 正式服 Raid FPS 片段 |
+| `templates/profiles/classic-a.wtf` | 怀旧服 画质优先片段 |
+| `templates/profiles/classic-b.wtf` | 怀旧服 平衡片段 |
+| `templates/profiles/classic-c.wtf` | 怀旧服 Raid FPS 片段 |
 | `scripts/detect-hardware.ps1` | 只读检测 |
 | `scripts/backup-wow.ps1` | 备份 WTF / Config.wtf / 系统状态 |
 | `scripts/apply-profile.ps1` | 应用配置（需备份存在） |

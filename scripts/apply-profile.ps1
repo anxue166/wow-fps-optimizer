@@ -7,7 +7,7 @@
   Keys not present are appended inside a marked block so they can be removed cleanly.
   A change log is appended to the backup root.
 
-.PARAMETER WowPath   WoW version dir (containing Wow.exe) or base install dir.
+.PARAMETER WowPath   WoW version dir (containing Wow.exe / WowClassic.exe) or base install dir.
 .PARAMETER Profile   A = quality first, B = balanced, C = raid FPS.
 .PARAMETER BackupDir Optional explicit backup dir. If omitted, the newest backup is required to exist.
 
@@ -16,22 +16,33 @@
 #>
 param(
     [Parameter(Mandatory = $true)][string]$WowPath,
-    [Parameter(Mandatory = $true)][ValidateSet('A','B','C')][string]$Profile,
+    [Parameter(Mandatory = $true)][ValidateSet('A','B','C','CA','CB','CC')][string]$Profile,
     [string]$BackupDir
 )
 
 $ErrorActionPreference = 'Stop'
 $skillRoot  = Split-Path $PSScriptRoot -Parent
-$profileFile = Join-Path $skillRoot "templates\profiles\profile-$($Profile.ToLower()).wtf"
+$key = $Profile.ToUpper()
+$fileMap = @{
+    'A'  = 'profile-a.wtf'
+    'B'  = 'profile-b.wtf'
+    'C'  = 'profile-c.wtf'
+    'CA' = 'classic-a.wtf'
+    'CB' = 'classic-b.wtf'
+    'CC' = 'classic-c.wtf'
+}
+$profileFile = Join-Path $skillRoot ("templates\profiles\" + $fileMap[$key])
 
 if (-not (Test-Path $profileFile)) { throw "Profile template not found: $profileFile" }
 
 # ---- resolve version dir ----
-if (Test-Path (Join-Path $WowPath 'Wow.exe')) {
+$exeNames = @('Wow.exe', 'WowClassic.exe', 'WowClassicEra.exe', 'WowB.exe')
+$hasExe = @($exeNames | Where-Object { Test-Path (Join-Path $WowPath $_) }).Count -gt 0
+if ($hasExe) {
     $versionDir = $WowPath; $baseDir = Split-Path $WowPath -Parent
 } else {
     $found = $null
-    foreach ($sub in @('_retail_', '_classic_', '_classic_era_')) {
+    foreach ($sub in @('_retail_', '_classic_', '_classic_era_', '_classic_titan_')) {
         if (Test-Path (Join-Path $WowPath $sub)) { $found = Join-Path $WowPath $sub; break }
     }
     if (-not $found) { throw "Cannot resolve WoW version dir under '$WowPath'." }

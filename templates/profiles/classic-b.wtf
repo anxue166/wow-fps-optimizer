@@ -1,0 +1,94 @@
+# ============================================================
+# Classic Profile CB - Balanced  (怀旧服 / 大秘境、日常、5人本)
+# For: dungeons, daily questing, small groups, open world combat
+# Priority: stable FPS ~= visual readability
+# ============================================================
+# Keys below were taken from a real _classic_titan_ Config.wtf.
+# apply-profile.ps1 replaces keys that already exist and appends
+# the rest inside a marked block. Verify in game after applying.
+# ============================================================
+
+# --- frame cap ----------------------------------------------
+# 57 assumes 60Hz. Use (refresh - 3) for high-refresh panels.
+SET useMaxFPS "1"
+SET maxFPS "57"
+SET vsync "0"
+
+# --- anti-aliasing ------------------------------------------
+SET MSAAQuality "1"
+SET ffxAntiAliasingMode "4"
+
+# --- shadows -------------------------------------------------
+SET graphicsShadowQuality "2"
+SET RAIDgraphicsShadowQuality "1"
+SET RAIDshadowMode "2"
+SET RAIDshadowNumCascades "2"
+
+# --- SSAO -----------------------------------------------------
+SET graphicsSSAO "0"
+SET raidGraphicsSSAO "0"
+SET RAIDgraphicsSSAO "0"
+SET RAIDSSAO "0"
+
+# --- geometry / clutter ---------------------------------------
+SET graphicsGroundClutter "4"
+SET raidGraphicsGroundClutter "3"
+SET RAIDgraphicsGroundClutter "3"
+SET graphicsEnvironmentDetail "5"
+SET raidGraphicsEnvironmentDetail "4"
+SET RAIDgraphicsEnvironmentDetail "4"
+SET RAIDlodObjectFadeScale "85"
+SET RAIDlodObjectCullSize "24"
+
+# --- particles -------------------------------------------------
+SET graphicsParticleDensity "3"
+SET raidGraphicsParticleDensity "2"
+SET RAIDgraphicsParticleDensity "2"
+SET RAIDparticleDensity "60"
+SET RAIDparticleMTDensity "60"
+SET particleDensity "70"
+SET particleMTDensity "70"
+
+# --- water / eye candy -----------------------------------------
+SET graphicsLiquidDetail "1"
+SET raidGraphicsLiquidDetail "1"
+SET RAIDgraphicsLiquidDetail "1"
+SET RAIDWaterDetail "1"
+SET graphicsSunshafts "1"
+SET raidGraphicsSunshafts "0"
+SET RAIDgraphicsSunshafts "0"
+SET RAIDsunShafts "0"
+SET sunShafts "1"
+SET reflectionMode "0"
+SET RAIDreflectionMode "0"
+SET rippleDetail "0"
+SET RAIDrippleDetail "0"
+SET weatherDensity "1"
+SET RAIDweatherDensity "1"
+SET groundEffectDensity "48"
+SET RAIDgroundEffectDensity "48"
+SET groundEffectDist "120"
+SET RAIDgroundEffectDist "120"
+
+# --- fx toggles -------------------------------------------------
+SET ffxGlow "0"
+SET ffxNether "0"
+SET ffxDeath "0"
+
+# --- KEEP THESE (combat readability floor) --------------------
+SET graphicsTextureResolution "2"
+SET raidGraphicsTextureResolution "2"
+SET RAIDgraphicsTextureResolution "2"
+SET worldBaseMip "0"
+SET RAIDworldBaseMip "0"
+SET graphicsProjectedTextures "1"
+SET raidGraphicsProjectedTextures "1"
+SET RAIDprojectedTextures "1"
+SET projectedTextures "1"
+SET spellClutterRangeConstantRaid "7"
+SET spellClutterRangeConstant "10"
+
+# --- quality preset --------------------------------------------
+SET graphicsQuality "5"
+SET RAIDgraphicsQuality "4"
+SET raidGraphicsQuality "4"

@@ -1,0 +1,106 @@
+# ============================================================
+# Classic Profile CC - Raid FPS  (怀旧服 / 团本专用)
+# For: 20-40 man raids, world bosses, capital cities
+# Priority: minimum FPS and 1% Low >> visual quality
+# ============================================================
+# Classic uses a SEPARATE raid graphics set: any key with a
+# RAID* prefix is applied automatically in raids/battlegrounds.
+# Optimizing raids therefore means editing BOTH the base key
+# and its RAID* twin.
+#
+# Keys below were taken from a real _classic_titan_ Config.wtf.
+# apply-profile.ps1 replaces keys that already exist and appends
+# the rest inside a marked block. Verify in game after applying.
+# ============================================================
+
+# --- frame cap (biggest free win) ---------------------------
+# 57 assumes a 60Hz display with adaptive sync. If your panel is
+# 144Hz use 141. NEVER leave maxFPS far above refresh rate -
+# the GPU renders frames nobody sees and frame times get jittery.
+SET useMaxFPS "1"
+SET maxFPS "57"
+SET vsync "0"
+
+# --- anti-aliasing (1440p: MSAA is expensive) ---------------
+SET MSAAQuality "0"
+SET ffxAntiAliasingMode "1"
+
+# --- shadows: no value in a raid, big cost ------------------
+SET graphicsShadowQuality "0"
+SET RAIDgraphicsShadowQuality "0"
+SET RAIDshadowMode "1"
+SET RAIDshadowNumCascades "1"
+
+# --- SSAO: invisible during combat --------------------------
+SET graphicsSSAO "0"
+SET raidGraphicsSSAO "0"
+SET RAIDgraphicsSSAO "0"
+SET RAIDSSAO "0"
+
+# --- geometry / clutter: draw-call heavy --------------------
+SET graphicsGroundClutter "2"
+SET raidGraphicsGroundClutter "2"
+SET RAIDgraphicsGroundClutter "2"
+SET graphicsEnvironmentDetail "2"
+SET raidGraphicsEnvironmentDetail "2"
+SET RAIDgraphicsEnvironmentDetail "2"
+SET RAIDlodObjectFadeScale "70"
+SET RAIDlodObjectCullSize "30"
+SET RAIDlodObjectMinSize "0"
+
+# --- particles: the raid AOE spike --------------------------
+SET graphicsParticleDensity "1"
+SET raidGraphicsParticleDensity "1"
+SET RAIDgraphicsParticleDensity "1"
+SET RAIDparticleDensity "30"
+SET RAIDparticleMTDensity "30"
+SET particleDensity "40"
+SET particleMTDensity "40"
+
+# --- water / eye candy --------------------------------------
+SET graphicsLiquidDetail "0"
+SET raidGraphicsLiquidDetail "0"
+SET RAIDgraphicsLiquidDetail "0"
+SET RAIDWaterDetail "0"
+SET graphicsSunshafts "0"
+SET raidGraphicsSunshafts "0"
+SET RAIDgraphicsSunshafts "0"
+SET RAIDsunShafts "0"
+SET sunShafts "0"
+SET reflectionMode "0"
+SET RAIDreflectionMode "0"
+SET rippleDetail "0"
+SET RAIDrippleDetail "0"
+SET weatherDensity "1"
+SET RAIDweatherDensity "1"
+SET groundEffectDensity "32"
+SET RAIDgroundEffectDensity "32"
+SET groundEffectDist "80"
+SET RAIDgroundEffectDist "80"
+
+# --- fx toggles: free performance ---------------------------
+SET ffxGlow "0"
+SET ffxNether "0"
+SET ffxDeath "0"
+
+# --- KEEP THESE (combat readability floor) ------------------
+# Texture resolution is currently too LOW on this machine.
+# 8GB VRAM at 1440p handles High easily - raise it, do not lower it.
+SET graphicsTextureResolution "2"
+SET raidGraphicsTextureResolution "2"
+SET RAIDgraphicsTextureResolution "2"
+SET worldBaseMip "0"
+SET RAIDworldBaseMip "0"
+# Projected textures = the AoE circles under your feet. Never off.
+SET graphicsProjectedTextures "1"
+SET raidGraphicsProjectedTextures "1"
+SET RAIDprojectedTextures "1"
+SET projectedTextures "1"
+# Spell clutter - lower means fewer other players' spell visuals
+SET spellClutterRangeConstantRaid "5"
+SET spellClutterRangeConstant "8"
+
+# --- quality preset (keep low so it does not fight the above) -
+SET graphicsQuality "2"
+SET RAIDgraphicsQuality "2"
+SET raidGraphicsQuality "2"

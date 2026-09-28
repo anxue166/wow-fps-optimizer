@@ -121,14 +121,33 @@ $common = @(
     'D:\Battle.net\World of Warcraft', 'C:\Battle.net\World of Warcraft'
 )
 foreach ($c in $common) { if (Test-Path $c) { $candidates += $c } }
+
+# Non-standard installs (e.g. E:\games\WoW, localized folder names):
+# 1) ask a running WoW process where it lives - most reliable
+foreach ($pn in @('Wow', 'WowClassic', 'WowClassicEra', 'WowB')) {
+    $p = Get-Process -Name $pn -ErrorAction SilentlyContinue | Select-Object -First 1
+    if ($p -and $p.Path) { $candidates += (Split-Path (Split-Path $p.Path -Parent) -Parent) }
+}
+# 2) brute-force: scan root of every fixed drive for a dir containing a version subfolder
+foreach ($d in (Get-CimInstance Win32_LogicalDisk -Filter 'DriveType=3').DeviceID) {
+    foreach ($dir in (Get-ChildItem "$d\" -Directory -ErrorAction SilentlyContinue)) {
+        if ($dir.Name -match 'World of Warcraft|Warcraft|Battle\.net|暴雪') {
+            foreach ($sub in @('_retail_', '_classic_', '_classic_era_', '_classic_titan_', '_ptr_')) {
+                if (Test-Path (Join-Path $dir.FullName $sub)) { $candidates += $dir.FullName; break }
+            }
+        }
+    }
+}
 $candidates = $candidates | Where-Object { $_ } | Select-Object -Unique
 
 $versions = @()
 foreach ($base in $candidates) {
-    foreach ($sub in @('_retail_', '_classic_', '_classic_era_', '_ptr_')) {
+    foreach ($sub in @('_retail_', '_classic_', '_classic_era_', '_classic_titan_', '_ptr_')) {
         $p = Join-Path $base $sub
-        if (Test-Path (Join-Path $p 'Wow.exe')) {
+        $exe = @('Wow.exe', 'WowClassic.exe', 'WowClassicEra.exe', 'WowB.exe') | Where-Object { Test-Path (Join-Path $p $_) } | Select-Object -First 1
+        if ($exe) {
             $versions += [ordered]@{
+                exe            = $exe
                 version    = $sub.Trim('_')
                 path       = $p
                 configWtf  = Join-Path $p 'WTF\Config.wtf'
