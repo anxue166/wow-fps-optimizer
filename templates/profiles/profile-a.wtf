@@ -1,0 +1,38 @@
+# ============================================================
+# Profile A - Quality First
+# For: questing, leveling, open world, solo play, screenshots
+# Priority: visual quality > raw FPS
+# ============================================================
+# NOTE: CVar names vary slightly between WoW versions.
+# apply-profile.ps1 replaces keys that already exist in your
+# Config.wtf and appends the rest inside a marked block.
+# Verify in game after applying.
+# ============================================================
+
+# --- render / sync -----------------------------------------
+SET RenderScale "1"
+SET gxTripleBuffer "0"
+SET gxVSync "0"
+# 141 assumes a 144Hz display. Set to (refresh rate - 3) for G-SYNC.
+SET maxFPS "141"
+SET maxFPSBk "30"
+
+# --- GPU heavy ---------------------------------------------
+SET graphicsShadowQuality "5"
+SET graphicsRayTracedShadows "0"
+SET graphicsLiquidDetail "3"
+SET graphicsSSAO "3"
+SET graphicsComputeEffects "3"
+SET graphicsOutlineEngine "2"
+SET graphicsParticleDensity "3"
+
+# --- CPU / raid critical -----------------------------------
+SET graphicsSpellDensity "3"
+SET graphicsViewDistance "10"
+SET graphicsEnvironmentalDetail "10"
+SET graphicsGroundClutter "9"
+
+# --- keep these (combat readability floor) -----------------
+SET graphicsTextureResolution "3"
+SET graphicsTextureFiltering "6"
+SET graphicsProjectedTextures "1"

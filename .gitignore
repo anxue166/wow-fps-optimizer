@@ -1,0 +1,17 @@
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+
+# Logs produced at runtime by the scripts
+change-log.txt
+_WoW-FPS-Backup/
+
+# Never commit personal backups or game configs
+*.bak-preprofile

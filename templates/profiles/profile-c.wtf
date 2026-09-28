@@ -1,0 +1,43 @@
+# ============================================================
+# Profile C - Raid FPS
+# For: 20-30 man raids, world bosses, capital cities
+# Priority: minimum FPS and 1% Low >> visual quality
+# ============================================================
+# NOTE: CVar names vary slightly between WoW versions.
+# apply-profile.ps1 replaces keys that already exist in your
+# Config.wtf and appends the rest inside a marked block.
+# Verify in game after applying.
+# ============================================================
+
+# --- render / sync -----------------------------------------
+# Keep 100%. Only drop to 0.95 if GPU usage stays pinned at 97%+
+# after everything below is applied.
+SET RenderScale "1"
+SET gxTripleBuffer "0"
+SET gxVSync "0"
+# 141 assumes a 144Hz display. Set to (refresh rate - 3) for G-SYNC.
+SET maxFPS "141"
+SET maxFPSBk "30"
+
+# --- GPU heavy ---------------------------------------------
+SET graphicsShadowQuality "1"
+SET graphicsRayTracedShadows "0"
+SET graphicsLiquidDetail "1"
+SET graphicsSSAO "0"
+SET graphicsComputeEffects "0"
+SET graphicsOutlineEngine "0"
+SET graphicsParticleDensity "1"
+
+# --- CPU / raid critical -----------------------------------
+# Spell Density = Essential. Single biggest raid FPS win.
+SET graphicsSpellDensity "0"
+SET graphicsViewDistance "5"
+SET graphicsEnvironmentalDetail "5"
+SET graphicsGroundClutter "4"
+
+# --- keep these (combat readability floor) -----------------
+# Do NOT lower texture resolution or turn off projected textures.
+# Your feet-level AoE circles depend on projected textures.
+SET graphicsTextureResolution "3"
+SET graphicsTextureFiltering "5"
+SET graphicsProjectedTextures "1"

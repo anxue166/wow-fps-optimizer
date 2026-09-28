@@ -1,0 +1,38 @@
+# ============================================================
+# Profile B - Balanced
+# For: Mythic+, 5-man dungeons, daily combat, small groups
+# Priority: stable FPS ~= visual readability
+# ============================================================
+# NOTE: CVar names vary slightly between WoW versions.
+# apply-profile.ps1 replaces keys that already exist in your
+# Config.wtf and appends the rest inside a marked block.
+# Verify in game after applying.
+# ============================================================
+
+# --- render / sync -----------------------------------------
+SET RenderScale "1"
+SET gxTripleBuffer "0"
+SET gxVSync "0"
+# 141 assumes a 144Hz display. Set to (refresh rate - 3) for G-SYNC.
+SET maxFPS "141"
+SET maxFPSBk "30"
+
+# --- GPU heavy ---------------------------------------------
+SET graphicsShadowQuality "3"
+SET graphicsRayTracedShadows "0"
+SET graphicsLiquidDetail "2"
+SET graphicsSSAO "1"
+SET graphicsComputeEffects "2"
+SET graphicsOutlineEngine "1"
+SET graphicsParticleDensity "2"
+
+# --- CPU / raid critical -----------------------------------
+SET graphicsSpellDensity "1"
+SET graphicsViewDistance "7"
+SET graphicsEnvironmentalDetail "7"
+SET graphicsGroundClutter "6"
+
+# --- keep these (combat readability floor) -----------------
+SET graphicsTextureResolution "3"
+SET graphicsTextureFiltering "6"
+SET graphicsProjectedTextures "1"
